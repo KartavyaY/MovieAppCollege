@@ -53,4 +53,10 @@ public class MovieRepository {
         String  sql = "DELETE FROM movies WHERE movie_id = ?";
         jdbcTemplate.update(sql, movieId);
     }
+
+    public void batchDeleteRecords(List<Movie> movies) {
+        String sql = "DELETE FROM movies WHERE movie_id = ?";
+        jdbcTemplate.batchUpdate(sql, movies, movies.size(), (ps, id) -> ps.setInt(1, id.getMovieId()));
+    }
+
 }

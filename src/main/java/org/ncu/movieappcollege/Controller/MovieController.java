@@ -40,8 +40,19 @@ public class MovieController {
         movieRepository.update(movie);
     }
 
+//    @PostMapping("/batchUpdate")
+//    public void batchUpdate(@RequestBody List<Movie> movies) {
+//        movieRepository.batchUpdateRecords(movies);
+//    }
+
     @DeleteMapping("/delete/{id}")
     public void deleteMovie(@PathVariable int id) {
         movieRepository.delete(id);
     }
+
+    @DeleteMapping("/deleteBatch")
+    public void batchDeleteMovies(@RequestBody List<Movie> movies) {
+        movieRepository.batchDeleteRecords(movies);
+    }
+
 }
