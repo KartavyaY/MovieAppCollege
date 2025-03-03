@@ -40,10 +40,10 @@ public class MovieController {
         movieRepository.update(movie);
     }
 
-//    @PostMapping("/batchUpdate")
-//    public void batchUpdate(@RequestBody List<Movie> movies) {
-//        movieRepository.batchUpdateRecords(movies);
-//    }
+    @PutMapping("/updatebyname")
+    public void updateMovieByName(@RequestParam String oldName, @RequestParam String newName) {
+        movieRepository.updateMovieByName(oldName,newName);
+    }
 
     @DeleteMapping("/delete/{id}")
     public void deleteMovie(@PathVariable int id) {
@@ -53,6 +53,11 @@ public class MovieController {
     @DeleteMapping("/deleteBatch")
     public void batchDeleteMovies(@RequestBody List<Movie> movies) {
         movieRepository.batchDeleteRecords(movies);
+    }
+
+    @GetMapping("/paginated")
+    public List<Movie> paginated(@RequestParam int pageSize, @RequestParam int pageNum){
+        return movieRepository.paginatedRecords(pageSize, pageNum);
     }
 
 }
