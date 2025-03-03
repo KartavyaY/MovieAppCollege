@@ -81,9 +81,6 @@ public class MovieRepository {
         return namedParameterJdbcTemplate.query(sql, params, (rs, rowNum) ->  new Movie(
                 rs.getInt("movie_Id"),
                 rs.getString("movie_Name")
-                )
-        );
+        ));
     }
-
-
 }
