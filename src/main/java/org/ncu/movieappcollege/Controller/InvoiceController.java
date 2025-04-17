@@ -2,6 +2,9 @@ package org.ncu.movieappcollege.Controller;
 
 import org.ncu.movieappcollege.Model.Invoice;
 import org.ncu.movieappcollege.Repository.InvoiceRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,5 +50,11 @@ public class InvoiceController {
     public ResponseEntity<Invoice> updateInvoice(@RequestBody Invoice invoice) {
         invoiceRepository.save(invoice);
         return ResponseEntity.ok(invoice);
+    }
+
+    @GetMapping("/paginated")
+    public List<Invoice> paginated(@RequestParam int page, @RequestParam int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return invoiceRepository.findAll(pageable).getContent();
     }
 }
