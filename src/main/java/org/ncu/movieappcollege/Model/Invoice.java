@@ -12,14 +12,14 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-public class Booking {
+public class Invoice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long bookingId;
+    private long invoiceId;
 
-    private long customerId;
-    private String bookingDate;
-    private String bookingTime;
+    private String customerName;
+    private double amount;
+    private String movieName;
 
 }

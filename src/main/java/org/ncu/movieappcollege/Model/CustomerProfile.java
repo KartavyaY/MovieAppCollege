@@ -12,14 +12,12 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-public class Booking {
+public class CustomerProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long bookingId;
-
     private long customerId;
-    private String bookingDate;
-    private String bookingTime;
+
+    private String fullName;
 
 }

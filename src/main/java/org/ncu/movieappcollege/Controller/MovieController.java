@@ -5,8 +5,10 @@ import org.ncu.movieappcollege.Repository.MovieRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/movie")
 public class MovieController {
 
     MovieRepository movieRepository;
@@ -22,7 +24,7 @@ public class MovieController {
 
     @PostMapping("/batchInsert")
     public void batchInsert(@RequestBody List<Movie> movies) {
-        movieRepository.batchInsertRecords(movies);
+        movieRepository.saveAll(movies);
     }
 
     @GetMapping("/get")
@@ -31,33 +33,23 @@ public class MovieController {
     }
 
     @GetMapping("/get/{id}")
-    public Movie getMovieById(@PathVariable int id) {
+    public Optional<Movie> getMovieById(@PathVariable long id) {
         return movieRepository.findById(id);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public void updateMovie(@RequestBody Movie movie) {
-        movieRepository.update(movie);
-    }
-
-    @PutMapping("/updatebyname")
-    public void updateMovieByName(@RequestParam String oldName, @RequestParam String newName) {
-        movieRepository.updateMovieByName(oldName,newName);
+        movieRepository.save(movie);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteMovie(@PathVariable int id) {
-        movieRepository.delete(id);
+    public void deleteMovie(@PathVariable long id) {
+        movieRepository.deleteById(id);
     }
 
     @DeleteMapping("/deleteBatch")
     public void batchDeleteMovies(@RequestBody List<Movie> movies) {
-        movieRepository.batchDeleteRecords(movies);
-    }
-
-    @GetMapping("/paginated")
-    public List<Movie> paginated(@RequestParam int pageSize, @RequestParam int pageNum){
-        return movieRepository.paginatedRecords(pageSize, pageNum);
+        movieRepository.deleteAll(movies);
     }
 
 }

@@ -1,32 +1,21 @@
 package org.ncu.movieappcollege.Model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Entity
 public class Movie {
 
-    private int movieId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long movieId;
+
     private String movieName;
-
-    public String getMovieName() {
-        return movieName;
-    }
-
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
-    }
-
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
-    }
-
-    public Movie() {
-    }
-
-    public Movie(int movieId, String movieName) {
-        this.movieId = movieId;
-        this.movieName = movieName;
-    }
-
 }

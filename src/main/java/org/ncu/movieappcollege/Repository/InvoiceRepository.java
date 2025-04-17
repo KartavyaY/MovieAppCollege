@@ -1,10 +1,9 @@
 package org.ncu.movieappcollege.Repository;
 
-import org.ncu.movieappcollege.Model.Movie;
+import org.ncu.movieappcollege.Model.Invoice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MovieRepository extends JpaRepository<Movie, Long> {
-
+public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
 }
