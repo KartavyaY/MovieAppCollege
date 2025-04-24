@@ -1,16 +1,12 @@
 package org.ncu.movieappcollege.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jdk.jfr.Timestamp;
 import lombok.*;
 
+import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@Data
 @Entity
 public class Booking {
 
@@ -18,8 +14,17 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long bookingId;
 
-    private long customerId;
     private String bookingDate;
     private String bookingTime;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private CustomerProfile customer;
+
+    @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
+    private Invoice invoice;
+
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL)
+    private List<Movie> movies;
 
 }

@@ -1,16 +1,10 @@
 package org.ncu.movieappcollege.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@Data
 @Entity
 public class Invoice {
 
@@ -18,8 +12,13 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long invoiceId;
 
+    @Column(nullable = false)
     private String customerName;
     private double amount;
     private String movieName;
+
+    @OneToOne
+    @JoinColumn(name = "booking_id", nullable = false)
+    private Booking booking;
 
 }

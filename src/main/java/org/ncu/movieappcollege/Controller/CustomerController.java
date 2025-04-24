@@ -2,6 +2,7 @@ package org.ncu.movieappcollege.Controller;
 
 import org.ncu.movieappcollege.Model.CustomerProfile;
 import org.ncu.movieappcollege.Repository.CustomerRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,9 +39,9 @@ public class CustomerController {
         return ResponseEntity.ok(customerProfile);
     }
 
-    @DeleteMapping("/remove")
-    public ResponseEntity<CustomerProfile> deleteCustomer(@RequestBody CustomerProfile customerProfile) {
-        customerRepository.delete(customerProfile);
-        return ResponseEntity.accepted().body(customerProfile);
+    @DeleteMapping("/remove/{id}")
+    public ResponseEntity<CustomerProfile> deleteCustomer(@PathVariable long id) {
+        customerRepository.deleteById(id);
+        return ResponseEntity.ok(new CustomerProfile());
     }
 }
