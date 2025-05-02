@@ -12,13 +12,8 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long invoiceId;
 
-    @Column(nullable = false)
     private String customerName;
     private double amount;
     private String movieName;
-
-    @OneToOne
-    @JoinColumn(name = "booking_id", nullable = false)
-    private Booking booking;
 
 }

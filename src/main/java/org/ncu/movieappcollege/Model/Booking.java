@@ -16,15 +16,4 @@ public class Booking {
 
     private String bookingDate;
     private String bookingTime;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
-    private CustomerProfile customer;
-
-    @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
-    private Invoice invoice;
-
-    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL)
-    private List<Movie> movies;
-
 }
